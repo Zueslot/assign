@@ -1,0 +1,52 @@
+name: Sample Workflow
+#Trigger the workflow on both push and manual runs
+on:
+ push:
+  branches:
+   -main #Trigger push to the "main" branch
+  workflow_dispatch: #Allow manual runs from the Actions tab
+
+jobs:
+ cohort16-job:
+   runs-on: ubuntu-latest #Use latest Ubuntu runner
+
+   steps:
+     -name: Repository Checkout
+     uses: actions/checkout@v3
+
+     -name: Create directory "gun"
+     run: ls
+
+     -name: Set EVN variables
+     evn:
+       CohortID: '16'
+       Location: "CALGARY"
+     run: echo "$CohorthID, $Location
+
+     #Step 3: Set an output for next step
+     -name: Set Output Message
+     env:
+       CohortID: '16'
+       Location: "CALGARY"
+       id: output_step
+       run: echo "::set-output name=custom_message::Hello, to Cohort $CohortID students in $Location"
+
+      #Use output from previous Step
+       -name: Use Output Message
+       run: echo "The custom message is; ${{ steps.output steps.outputs.custom_message }}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+    
